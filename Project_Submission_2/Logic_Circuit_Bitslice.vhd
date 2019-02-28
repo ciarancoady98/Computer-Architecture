@@ -75,5 +75,4 @@ mux: Multiplexer_4to1 PORT MAP(
         Z => Z
         );
 
-
 end Behavioral;

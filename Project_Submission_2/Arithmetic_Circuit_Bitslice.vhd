@@ -32,8 +32,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity Arithmetic_Circuit_Bitslice is
-    Port ( S1 : in STD_LOGIC;
-           A : in STD_LOGIC;
+    Port ( A : in STD_LOGIC;
            B : in STD_LOGIC;
            C_in : in STD_LOGIC;
            G : out STD_LOGIC;
@@ -68,6 +67,14 @@ begin
             S => B,
             Z => Y
             );
-
-
+            
+    fullAdder: Full_Adder
+    PORT MAP(
+            In1 => Y,
+            In2 => A,
+            C_in => C_in,
+            Sum => G,
+            C_out => C_out
+            );
+            
 end Behavioral;
