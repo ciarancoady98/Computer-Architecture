@@ -38,7 +38,8 @@ entity Arithmetic_Circuit is
            A : in STD_LOGIC_VECTOR (15 downto 0);
            B : in STD_LOGIC_VECTOR (15 downto 0);
            G : out STD_LOGIC_VECTOR (15 downto 0);
-           C_Out : out STD_LOGIC);
+           C_Out : out STD_LOGIC;
+           V_out : out STD_LOGIC);
 end Arithmetic_Circuit;
 
 architecture Behavioral of Arithmetic_Circuit is
@@ -66,6 +67,7 @@ signal C_11 : std_logic;
 signal C_12 : std_logic;
 signal C_13 : std_logic;
 signal C_14 : std_logic;
+signal C_Out_Signal : std_logic;
 
 begin
     
@@ -211,7 +213,10 @@ begin
         B => B(15),
         C_in => C_14,
         G => G(15),
-        C_out => C_out
+        C_out => C_Out_Signal
         );
+        
+      V_Out <= (C_Out_Signal XOR C_14);
+      C_Out <= C_Out_Signal;
 
 end Behavioral;

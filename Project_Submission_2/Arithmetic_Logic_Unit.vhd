@@ -39,7 +39,8 @@ entity Arithmetic_Logic_Unit is
            S1 : in STD_LOGIC;
            S2 : in STD_LOGIC;
            G : out STD_LOGIC_VECTOR (15 downto 0);
-           C_out : out STD_LOGIC);
+           C_out : out STD_LOGIC;
+           V_out : out STD_LOGIC);
 end Arithmetic_Logic_Unit;
 
 architecture Behavioral of Arithmetic_Logic_Unit is
@@ -51,7 +52,8 @@ component Arithmetic_Circuit
            A : in STD_LOGIC_VECTOR (15 downto 0);
            B : in STD_LOGIC_VECTOR (15 downto 0);
            G : out STD_LOGIC_VECTOR (15 downto 0);
-           C_Out : out STD_LOGIC);
+           C_Out : out STD_LOGIC;
+           V_Out : out STD_LOGIC);
 end component;
 
 component Logic_Circuit
@@ -82,6 +84,7 @@ arithmetic_unit : Arithmetic_Circuit
            S0 => S0,
            S1 => S1,
            C_out => C_out,
+           V_out => V_out,
            G => arithmetic_output
         );
         
