@@ -35,6 +35,8 @@ entity Arithmetic_Circuit_Bitslice is
     Port ( A : in STD_LOGIC;
            B : in STD_LOGIC;
            C_in : in STD_LOGIC;
+           S0 : in STD_LOGIC;
+           S1 : in STD_LOGIC;
            G : out STD_LOGIC;
            C_out : out STD_LOGIC);
 end Arithmetic_Circuit_Bitslice;
@@ -62,8 +64,8 @@ begin
 
     mux: Multiplexer_2to1_1bit
     PORT MAP(
-            In0 => '0',
-            In1 => '1',
+            In0 => S1,
+            In1 => S0,
             S => B,
             Z => Y
             );

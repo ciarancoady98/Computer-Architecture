@@ -34,7 +34,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity Functional_Unit is
     Port ( A : in STD_LOGIC_VECTOR (15 downto 0);
            B : in STD_LOGIC_VECTOR (15 downto 0);
-           FS : in STD_LOGIC_VECTOR (5 downto 0);
+           FS : in STD_LOGIC_VECTOR (4 downto 0);
            V : out STD_LOGIC;
            C : out STD_LOGIC;
            N : out STD_LOGIC;
@@ -78,19 +78,17 @@ end component;
 
 signal ALU_output_signal : std_logic_vector(15 downto 0); 
 signal Shifter_output_signal : std_logic_vector(15 downto 0); 
-signal Ir_signal : std_logic;
-signal Il_signal : std_logic;
 
 begin
 
 ALU : Arithmetic_Logic_Unit
         PORT MAP(
-            C_In => FS(2),
+            C_In => FS(4),
             A => A,
             B => B,
-            S0 => FS(3),
-            S1 => FS(4),
-            S2 => FS(5),
+            S0 => FS(1),
+            S1 => FS(2),
+            S2 => FS(3),
             G => ALU_output_signal,
             C_Out => C,
             V_Out => V
@@ -101,8 +99,8 @@ Shifter : Shifter_16bit
             B => B,
             S(0) => FS(1),
             S(1) => FS(2),
-            Ir => Ir_signal,
-            Il => Il_signal,
+            Ir => '0',
+            Il => '0',
             H => Shifter_output_signal
          ); 
          
@@ -114,7 +112,7 @@ ZeroDetect : Zero_Detect_16bit
           
 Mux : Multiplexer_2to1
         PORT MAP(
-            S => FS(6),
+            S => FS(0),
             In0 => ALU_output_signal,
             In1 => Shifter_output_signal,
             Z => F

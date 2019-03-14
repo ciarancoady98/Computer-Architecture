@@ -48,6 +48,8 @@ COMPONENT Arithmetic_Circuit_Bitslice
     Port ( A : in STD_LOGIC;
            B : in STD_LOGIC;
            C_in : in STD_LOGIC;
+           S0 : in STD_LOGIC;
+           S1 : in STD_LOGIC;
            G : out STD_LOGIC;
            C_out : out STD_LOGIC);
 END COMPONENT;
@@ -77,7 +79,9 @@ begin
         B => B(0),
         C_in => C_in,
         G => G(0),
-        C_out => C_0
+        C_out => C_0,
+        S0 => S0,
+        S1 => S1
         );
         
     Bit1 : Arithmetic_Circuit_Bitslice
@@ -86,7 +90,9 @@ begin
         B => B(1),
         C_in => C_0,
         G => G(1),
-        C_out => C_1
+        C_out => C_1,
+        S0 => S0,
+        S1 => S1
         );
         
         
@@ -96,7 +102,9 @@ begin
         B => B(2),
         C_in => C_1,
         G => G(2),
-        C_out => C_2
+        C_out => C_2,
+        S0 => S0,
+        S1 => S1
         );
         
      Bit3 : Arithmetic_Circuit_Bitslice
@@ -105,7 +113,9 @@ begin
         B => B(3),
         C_in => C_2,
         G => G(3),
-        C_out => C_3
+        C_out => C_3,
+        S0 => S0,
+        S1 => S1
         );
                
      Bit4 : Arithmetic_Circuit_Bitslice
@@ -114,7 +124,9 @@ begin
         B => B(4),
         C_in => C_3,
         G => G(4),
-        C_out => C_4
+        C_out => C_4,
+        S0 => S0,
+        S1 => S1
         );
         
      Bit5 : Arithmetic_Circuit_Bitslice
@@ -123,7 +135,9 @@ begin
         B => B(5),
         C_in => C_4,
         G => G(5),
-        C_out => C_5
+        C_out => C_5,
+        S0 => S0,
+        S1 => S1
         );
         
      Bit6 : Arithmetic_Circuit_Bitslice
@@ -132,7 +146,9 @@ begin
         B => B(6),
         C_in => C_5,
         G => G(6),
-        C_out => C_6
+        C_out => C_6,
+        S0 => S0,
+        S1 => S1
         );
         
      Bit7 : Arithmetic_Circuit_Bitslice
@@ -141,7 +157,9 @@ begin
         B => B(7),
         C_in => C_6,
         G => G(7),
-        C_out => C_7
+        C_out => C_7,
+        S0 => S0,
+        S1 => S1
         );
 
      Bit8 : Arithmetic_Circuit_Bitslice
@@ -150,7 +168,9 @@ begin
         B => B(8),
         C_in => C_7,
         G => G(8),
-        C_out => C_8
+        C_out => C_8,
+        S0 => S0,
+        S1 => S1
         );
         
      Bit9 : Arithmetic_Circuit_Bitslice
@@ -159,7 +179,9 @@ begin
         B => B(9),
         C_in => C_8,
         G => G(9),
-        C_out => C_9
+        C_out => C_9,
+        S0 => S0,
+        S1 => S1
         );
 
      Bit10 : Arithmetic_Circuit_Bitslice
@@ -168,7 +190,9 @@ begin
         B => B(10),
         C_in => C_9,
         G => G(10),
-        C_out => C_10
+        C_out => C_10,
+        S0 => S0,
+        S1 => S1
         );
         
      Bit11 : Arithmetic_Circuit_Bitslice
@@ -177,7 +201,9 @@ begin
         B => B(11),
         C_in => C_10,
         G => G(11),
-        C_out => C_11
+        C_out => C_11,
+        S0 => S0,
+        S1 => S1
         );
         
      Bit12 : Arithmetic_Circuit_Bitslice
@@ -186,7 +212,9 @@ begin
         B => B(12),
         C_in => C_11,
         G => G(12),
-        C_out => C_12
+        C_out => C_12,
+        S0 => S0,
+        S1 => S1
         );
         
      Bit13 : Arithmetic_Circuit_Bitslice
@@ -195,7 +223,9 @@ begin
         B => B(13),
         C_in => C_12,
         G => G(13),
-        C_out => C_13
+        C_out => C_13,
+        S0 => S0,
+        S1 => S1
         );
         
      Bit14 : Arithmetic_Circuit_Bitslice
@@ -204,7 +234,9 @@ begin
         B => B(14),
         C_in => C_13,
         G => G(14),
-        C_out => C_14
+        C_out => C_14,
+        S0 => S0,
+        S1 => S1
         );
 
      Bit15 : Arithmetic_Circuit_Bitslice
@@ -213,7 +245,9 @@ begin
         B => B(15),
         C_in => C_14,
         G => G(15),
-        C_out => C_Out_Signal
+        C_out => C_Out_Signal,
+        S0 => S0,
+        S1 => S1
         );
         
       V_Out <= (C_Out_Signal XOR C_14);
