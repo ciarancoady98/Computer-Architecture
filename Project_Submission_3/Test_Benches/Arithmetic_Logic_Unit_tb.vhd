@@ -1,18 +1,17 @@
--- Ciaran Coady --
+---------------------------------------------------------------------------------- 
+-- Engineer: Ciaran Coady
+-- Module Name: Arithmetic_Logic_Unit_tb
+-- Project Name: Computer Architecture
+----------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
- 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
- 
+
 ENTITY Arithmetic_Logic_Unit_tb IS
 END Arithmetic_Logic_Unit_tb;
  
 ARCHITECTURE behavior OF Arithmetic_Logic_Unit_tb is
  
     -- Component Declaration for the Unit Under Test (UUT)
-    
     component Arithmetic_Logic_Unit
     Port ( C_in : in STD_LOGIC;
            A : in STD_LOGIC_VECTOR (15 downto 0);
@@ -23,7 +22,7 @@ ARCHITECTURE behavior OF Arithmetic_Logic_Unit_tb is
            G : out STD_LOGIC_VECTOR (15 downto 0);
            C_out : out STD_LOGIC;
            V_out : out STD_LOGIC);
-end component;
+    end component;
     
 
    --Inputs
@@ -34,14 +33,12 @@ end component;
    signal S1_signal : STD_LOGIC := '0';
    signal S2_signal : STD_LOGIC := '0';
 
- 	--Outpzuts
+ 	--Outputs
    signal G_signal : STD_LOGIC_VECTOR (15 downto 0);
    signal C_out_signal : STD_LOGIC;
    signal V_out_signal : STD_LOGIC;
    
-   -- No clocks detected in port list. Replace <clock> below with 
-   -- appropriate port name 
- 
+    --Clock
     constant Clk_period : time := 80 ns;
  
 BEGIN

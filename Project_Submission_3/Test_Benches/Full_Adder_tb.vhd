@@ -1,25 +1,24 @@
--- Ciaran Coady --
+---------------------------------------------------------------------------------- 
+-- Engineer: Ciaran Coady
+-- Module Name: Full_Adder_tb
+-- Project Name: Computer Architecture
+----------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
- 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
- 
+
 ENTITY Full_Adder_tb IS
 END Full_Adder_tb;
  
 ARCHITECTURE behavior OF Full_Adder_tb is
  
     -- Component Declaration for the Unit Under Test (UUT)
-    
     component Full_Adder
     Port ( In1 : in STD_LOGIC;
            In2 : in STD_LOGIC;
            C_in : in STD_LOGIC;
            Sum : out STD_LOGIC;
            C_out : out STD_LOGIC);
-end component;
+    end component;
     
 
    --Inputs
@@ -27,13 +26,11 @@ end component;
    signal In2_signal : STD_LOGIC;
    signal C_in_signal : STD_LOGIC;
 
- 	--Outpzuts
+ 	--Outputs
    signal Sum_signal : STD_LOGIC;
    signal C_out_signal : STD_LOGIC;
    
-   -- No clocks detected in port list. Replace <clock> below with 
-   -- appropriate port name 
- 
+   --Clock
    constant Clk_period : time := 40 ns;
  
 BEGIN

@@ -1,10 +1,10 @@
--- Ciaran Coady --
+---------------------------------------------------------------------------------- 
+-- Engineer: Ciaran Coady
+-- Module Name: Reg_16bit_tb
+-- Project Name: Computer Architecture
+----------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
-
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
 
 ENTITY Multiplexer_16to1_tb IS
 END Multiplexer_16to1_tb;
@@ -12,7 +12,6 @@ END Multiplexer_16to1_tb;
 ARCHITECTURE behavior OF Multiplexer_16to1_tb IS
 
     -- Component Declaration for the Unit Under Test (UUT)
-
     COMPONENT Multiplexer_16to1
         Port ( S0 : in  STD_LOGIC;
                S1 : in  STD_LOGIC;
@@ -61,10 +60,9 @@ ARCHITECTURE behavior OF Multiplexer_16to1_tb IS
 
  	--Outputs
    signal Z_signal : std_logic_vector(15 downto 0);
-   -- No clocks detected in port list. Replace <clock> below with
-   -- appropriate port name
 
---   constant Clk_period : time := 10 ns;
+   --Clock
+   constant Clk_period : time := 10 ns;
 
 BEGIN
 
@@ -96,13 +94,13 @@ BEGIN
    stim_proc: process
    begin
       In0_signal <= "0000000000000000";
-		  In1_signal <= "0000000000000001";
-  		In2_signal <= "0000000000000010";
-  		In3_signal <= "0000000000000011";
-  		In4_signal <= "0000000000000100";
-  		In5_signal <= "0000000000000101";
-  		In6_signal <= "0000000000000110";
-  		In7_signal <= "0000000000000111";
+	  In1_signal <= "0000000000000001";
+  	  In2_signal <= "0000000000000010";
+      In3_signal <= "0000000000000011";
+  	  In4_signal <= "0000000000000100";
+  	  In5_signal <= "0000000000000101";
+  	  In6_signal <= "0000000000000110";
+  	  In7_signal <= "0000000000000111";
       In8_signal <= "0000000000001000";
       In9_signal <= "0000000000001001";
       In10_signal <= "0000000000001010";
@@ -112,97 +110,97 @@ BEGIN
       In14_signal <= "0000000000001110";
       In15_signal <= "0000000000001111";
 
-      wait for 10 ns;
+      wait for Clk_period;
       S0_signal <= '0';
       S1_signal <= '0';
       S2_signal <= '0';
       S3_signal <= '0';
 
-      wait for 10 ns;
+      wait for Clk_period;
       S0_signal <= '1';
       S1_signal <= '0';
       S2_signal <= '0';
       S3_signal <= '0';
 
-      wait for 10 ns;
+      wait for Clk_period;
       S0_signal <= '0';
       S1_signal <= '1';
       S2_signal <= '0';
       S3_signal <= '0';
 
-      wait for 10 ns;
+      wait for Clk_period;
       S0_signal <= '1';
       S1_signal <= '1';
       S2_signal <= '0';
       S3_signal <= '0';
 
-      wait for 10 ns;
+      wait for Clk_period;
       S0_signal <= '0';
       S1_signal <= '0';
       S2_signal <= '1';
       S3_signal <= '0';
 
-      wait for 10 ns;
+      wait for Clk_period;
       S0_signal <= '1';
       S1_signal <= '0';
       S2_signal <= '1';
       S3_signal <= '0';
 
-      wait for 10 ns;
+      wait for Clk_period;
       S0_signal <= '0';
       S1_signal <= '1';
       S2_signal <= '1';
       S3_signal <= '0';
 
-      wait for 10 ns;
+      wait for Clk_period;
       S0_signal <= '1';
       S1_signal <= '1';
       S2_signal <= '1';
       S3_signal <= '0';
 
-      wait for 10 ns;
+      wait for Clk_period;
       S0_signal <= '0';
       S1_signal <= '0';
       S2_signal <= '0';
       S3_signal <= '1';
 
-      wait for 10 ns;
+      wait for Clk_period;
       S0_signal <= '1';
       S1_signal <= '0';
       S2_signal <= '0';
       S3_signal <= '1';
 
-      wait for 10 ns;
+      wait for Clk_period;
       S0_signal <= '0';
       S1_signal <= '1';
       S2_signal <= '0';
       S3_signal <= '1';
 
-      wait for 10 ns;
+      wait for Clk_period;
       S0_signal <= '1';
       S1_signal <= '1';
       S2_signal <= '0';
       S3_signal <= '1';
 
-      wait for 10 ns;
+      wait for Clk_period;
       S0_signal <= '0';
       S1_signal <= '0';
       S2_signal <= '1';
       S3_signal <= '1';
 
-      wait for 10 ns;
+      wait for Clk_period;
       S0_signal <= '1';
       S1_signal <= '0';
       S2_signal <= '1';
       S3_signal <= '1';
 
-      wait for 10 ns;
+      wait for Clk_period;
       S0_signal <= '0';
       S1_signal <= '1';
       S2_signal <= '1';
       S3_signal <= '1';
 
-      wait for 10 ns;
+      wait for Clk_period;
       S0_signal <= '1';
       S1_signal <= '1';
       S2_signal <= '1';

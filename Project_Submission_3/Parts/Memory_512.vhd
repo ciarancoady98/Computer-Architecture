@@ -1,5 +1,8 @@
--- Ciaran Coady --
-
+---------------------------------------------------------------------------------- 
+-- Engineer: Ciaran Coady
+-- Module Name: Memory_512
+-- Project Name: Computer Architecture
+----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.numeric_std.ALL;

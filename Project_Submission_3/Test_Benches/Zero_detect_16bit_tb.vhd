@@ -1,18 +1,17 @@
--- Ciaran Coady --
+---------------------------------------------------------------------------------- 
+-- Engineer: Ciaran Coady
+-- Module Name: Zero_Detect_16bit_tb
+-- Project Name: Computer Architecture
+----------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
- 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
- 
+
 ENTITY Zero_Detect_16bit_tb IS
 END Zero_Detect_16bit_tb;
  
 ARCHITECTURE behavior OF Zero_Detect_16bit_tb is
  
     -- Component Declaration for the Unit Under Test (UUT)
-    
     COMPONENT Zero_Detect_16bit
     PORT ( A : in STD_LOGIC_VECTOR (15 downto 0);
            Z : out STD_LOGIC);
@@ -22,12 +21,10 @@ ARCHITECTURE behavior OF Zero_Detect_16bit_tb is
    --Inputs
    signal A_signal : STD_LOGIC_VECTOR (15 downto 0);
 
- 	--Outpzuts
+ 	--Outputs
    signal Z_signal : STD_LOGIC;
    
-   -- No clocks detected in port list. Replace <clock> below with 
-   -- appropriate port name 
- 
+  --Clock
   constant Clk_period : time := 20 ns;
  
 BEGIN

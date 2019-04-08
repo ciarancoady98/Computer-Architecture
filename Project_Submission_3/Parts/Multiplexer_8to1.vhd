@@ -1,32 +1,25 @@
--- Ciaran Coady --
-
-
+---------------------------------------------------------------------------------- 
+-- Engineer: Ciaran Coady
+-- Module Name: Multiplexer_8to1
+-- Project Name: Computer Architecture
+----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
-
-entity Multiplexer_8to1_1bit is
+entity Multiplexer_8to1 is
     Port ( S0 : in STD_LOGIC;
            S1 : in STD_LOGIC;
            S2 : in STD_LOGIC;
-           In0 : in STD_LOGIC;
-           In1 : in STD_LOGIC;
-           In2 : in STD_LOGIC;
-           In3 : in STD_LOGIC;
-           In4 : in STD_LOGIC;
-           In5 : in STD_LOGIC;
-           In6 : in STD_LOGIC;
-           In7 : in STD_LOGIC;
-           Z : out STD_LOGIC);
-end Multiplexer_8to1_1bit;
+           In0 : in STD_LOGIC_VECTOR(15 downto 0);
+           In1 : in STD_LOGIC_VECTOR(15 downto 0);
+           In2 : in STD_LOGIC_VECTOR(15 downto 0);
+           In3 : in STD_LOGIC_VECTOR(15 downto 0);
+           In4 : in STD_LOGIC_VECTOR(15 downto 0);
+           In5 : in STD_LOGIC_VECTOR(15 downto 0);
+           In6 : in STD_LOGIC_VECTOR(15 downto 0);
+           In7 : in STD_LOGIC_VECTOR(15 downto 0);
+           Z : out STD_LOGIC_VECTOR(15 downto 0));
+end Multiplexer_8to1;
 
 architecture Behavioral of Multiplexer_8to1 is
 

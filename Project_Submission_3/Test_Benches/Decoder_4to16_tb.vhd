@@ -1,10 +1,10 @@
--- Ciaran Coady --
+---------------------------------------------------------------------------------- 
+-- Engineer: Ciaran Coady
+-- Module Name: Decoder_4to16_tb
+-- Project Name: Computer Architecture
+----------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
-
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
 
 ENTITY Decoder_4to16_tb IS
 END Decoder_4to16_tb;
@@ -12,7 +12,6 @@ END Decoder_4to16_tb;
 ARCHITECTURE behavior OF Decoder_4to16_tb is
 
     -- Component Declaration for the Unit Under Test (UUT)
-
     COMPONENT Decoder_4to16
         Port ( A0 : in  STD_LOGIC;
                A1 : in  STD_LOGIC;
@@ -25,14 +24,14 @@ ARCHITECTURE behavior OF Decoder_4to16_tb is
                Q4 : out STD_LOGIC;
                Q5 : out STD_LOGIC;
                Q6 : out STD_LOGIC;
-               Q7 : out STD_LOGIC);
-               Q8 : out STD_LOGIC);
-               Q9 : out STD_LOGIC);
-               Q10 : out STD_LOGIC);
-               Q11 : out STD_LOGIC);
-               Q12 : out STD_LOGIC);
-               Q13 : out STD_LOGIC);
-               Q14 : out STD_LOGIC);
+               Q7 : out STD_LOGIC;
+               Q8 : out STD_LOGIC;
+               Q9 : out STD_LOGIC;
+               Q10 : out STD_LOGIC;
+               Q11 : out STD_LOGIC;
+               Q12 : out STD_LOGIC;
+               Q13 : out STD_LOGIC;
+               Q14 : out STD_LOGIC;
                Q15 : out STD_LOGIC);
     END COMPONENT;
 
@@ -60,10 +59,9 @@ ARCHITECTURE behavior OF Decoder_4to16_tb is
    signal Q13_signal : std_logic;
    signal Q14_signal : std_logic;
    signal Q15_signal : std_logic;
-   -- No clocks detected in port list. Replace <clock> below with
-   -- appropriate port name
 
---   constant Clk_period : time := 10 ns;
+   --Clock
+   constant Clk_period : time := 10 ns;
 
 BEGIN
 
@@ -93,99 +91,102 @@ BEGIN
 
    stim_proc: process
    begin
-
-      wait for 10 ns;
-      A3_signal <= '1';
-      A2_signal <= '0';
-      A1_signal <= '0';
+   
+      wait for Clk_period;
       A0_signal <= '0';
-
-      wait for 10 ns;
-      A3_signal <= '0';
-      A2_signal <= '1';
       A1_signal <= '0';
-      A0_signal <= '0';
+      A2_signal <= '0';
+      A3_signal <= '0';
 
-      wait for 10 ns;
-      A3_signal <= '1';
-      A2_signal <= '1';
+      wait for Clk_period;
+      A0_signal <= '1';
       A1_signal <= '0';
-      A0_signal <= '0';
-
-      wait for 10 ns;
-      A3_signal <= '0';
       A2_signal <= '0';
-      A1_signal <= '1';
-      A0_signal <= '0';
-
-      wait for 10 ns;
-      A3_signal <= '1';
-      A2_signal <= '0';
-      A1_signal <= '1';
-      A0_signal <= '0';
-
-      wait for 10 ns;
       A3_signal <= '0';
-      A2_signal <= '1';
-      A1_signal <= '1';
-      A0_signal <= '0';
 
-      wait for 10 ns;
-      A3_signal <= '1';
-      A2_signal <= '1';
-      A1_signal <= '1';
+      wait for Clk_period;
       A0_signal <= '0';
-
-      wait for 10 ns;
-      A3_signal <= '0';
+      A1_signal <= '1';
       A2_signal <= '0';
+      A3_signal <= '0';
+      
+      wait for Clk_period;
+      A0_signal <= '1';
+      A1_signal <= '1';
+      A2_signal <= '0';
+      A3_signal <= '0';
+      
+      wait for Clk_period;
+      A0_signal <= '0';
       A1_signal <= '0';
-      A0_signal <= '1';
-
-      wait for 10 ns;
-      A3_signal <= '1';
-      A2_signal <= '0';
-      A1_signal <= '0';
-      A0_signal <= '1';
-
-      wait for 10 ns;
+      A2_signal <= '1';
       A3_signal <= '0';
-      A2_signal <= '1';
+      
+      wait for Clk_period;
+      A0_signal <= '1';
       A1_signal <= '0';
-      A0_signal <= '1';
-
-      wait for 10 ns;
-      A3_signal <= '1';
       A2_signal <= '1';
+      A3_signal <= '0';
+      
+      wait for Clk_period;
+      A0_signal <= '0';
+      A1_signal <= '1';
+      A2_signal <= '1';
+      A3_signal <= '0';
+      
+      wait for Clk_period;
+      A0_signal <= '1';
+      A1_signal <= '1';
+      A2_signal <= '1';
+      A3_signal <= '0';
+      
+      wait for Clk_period;
+      A0_signal <= '0';
       A1_signal <= '0';
-      A0_signal <= '1';
-
-      wait for 10 ns;
-      A3_signal <= '0';
       A2_signal <= '0';
-      A1_signal <= '1';
-      A0_signal <= '1';
-
-      wait for 10 ns;
       A3_signal <= '1';
+      
+      wait for Clk_period;
+      A0_signal <= '1';
+      A1_signal <= '0';
       A2_signal <= '0';
-      A1_signal <= '1';
-      A0_signal <= '1';
-
-      wait for 10 ns;
-      A3_signal <= '0';
-      A2_signal <= '1';
-      A1_signal <= '1';
-      A0_signal <= '1';
-
-      wait for 10 ns;
       A3_signal <= '1';
-      A2_signal <= '1';
+      
+      wait for Clk_period;
+      A0_signal <= '0';
       A1_signal <= '1';
+      A2_signal <= '0';
+      A3_signal <= '1';
+      
+      wait for Clk_period;
       A0_signal <= '1';
-
-      wait for 10 ns;
-
+      A1_signal <= '1';
+      A2_signal <= '0';
+      A3_signal <= '1';
+      
+      wait for Clk_period;
+      A0_signal <= '0';
+      A1_signal <= '0';
+      A2_signal <= '1';
+      A3_signal <= '1';
+      
+      wait for Clk_period;
+      A0_signal <= '1';
+      A1_signal <= '0';
+      A2_signal <= '1';
+      A3_signal <= '1';
+      
+      wait for Clk_period;
+      A0_signal <= '0';
+      A1_signal <= '1';
+      A2_signal <= '1';
+      A3_signal <= '1';
+      
+      wait for Clk_period;
+      A0_signal <= '1';
+      A1_signal <= '1';
+      A2_signal <= '1';
+      A3_signal <= '1';
 
  --     wait;
    end process;

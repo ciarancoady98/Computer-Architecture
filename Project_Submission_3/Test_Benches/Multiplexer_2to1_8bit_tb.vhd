@@ -1,10 +1,10 @@
--- Ciaran Coady --
+---------------------------------------------------------------------------------- 
+-- Engineer: Ciaran Coady
+-- Module Name: Multiplexer_2to1_8bit_tb
+-- Project Name: Computer Architecture
+----------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
-
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
 
 ENTITY Multiplexer_2to1_8bit_tb IS
 END Multiplexer_2to1_8bit_tb;
@@ -12,8 +12,7 @@ END Multiplexer_2to1_8bit_tb;
 ARCHITECTURE behavior OF Multiplexer_2to1_8bit_tb is
 
     -- Component Declaration for the Unit Under Test (UUT)
-
-    COMPONENT Multiplexer_2to1_8bit is
+    COMPONENT Multiplexer_2to1_8bit
         Port ( S : in STD_LOGIC;
                In0 : in STD_LOGIC_VECTOR (7 downto 0);
                In1 : in STD_LOGIC_VECTOR (7 downto 0);
@@ -27,12 +26,10 @@ ARCHITECTURE behavior OF Multiplexer_2to1_8bit_tb is
    signal In1_signal : STD_LOGIC_VECTOR (7 downto 0);
 
 
- 	--Outpzuts
+ 	--Outputs
    signal Z_signal : STD_LOGIC_VECTOR (7 downto 0);
 
-   -- No clocks detected in port list. Replace <clock> below with
-   -- appropriate port name
-
+   --Clock
    constant Clk_period : time := 10 ns;
 
 BEGIN

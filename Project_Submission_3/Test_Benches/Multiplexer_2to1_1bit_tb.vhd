@@ -1,10 +1,11 @@
--- Ciaran Coady --
+---------------------------------------------------------------------------------- 
+-- Engineer: Ciaran Coady
+-- Module Name: Multiplexer_2to1_1bit_tb
+-- Project Name: Computer Architecture
+----------------------------------------------------------------------------------
+
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
- 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
  
 ENTITY Multiplexer_2to1_1bit_tb IS
 END Multiplexer_2to1_1bit_tb;
@@ -13,12 +14,12 @@ ARCHITECTURE behavior OF Multiplexer_2to1_1bit_tb is
  
     -- Component Declaration for the Unit Under Test (UUT)
     
-    component Multiplexer_2to1_1bit is
+    component Multiplexer_2to1_1bit
     Port ( In0 : in STD_LOGIC;
            In1 : in STD_LOGIC;
            S : in STD_LOGIC;
            Z : out STD_LOGIC);
-end component;
+    end component;
     
 
    --Inputs
@@ -26,12 +27,10 @@ end component;
    signal In0_signal : STD_LOGIC;
    signal In1_signal : STD_LOGIC;
 
- 	--Outpzuts
+ 	--Outputs
    signal Z_signal : STD_LOGIC;
-   
-   -- No clocks detected in port list. Replace <clock> below with 
-   -- appropriate port name 
  
+   --Clock
    constant Clk_period : time := 40 ns;
  
 BEGIN
@@ -52,14 +51,10 @@ BEGIN
       In0_signal <= '0';
       In1_signal <= '1';
       
-      wait for Clk_period;
-      
       wait for Clk_period;	
-      --Change output to 0
       S_signal <= '1';
       
       wait for Clk_period;
-      --Change output to 0	
       S_signal <= '0';
       
       wait for Clk_period;	

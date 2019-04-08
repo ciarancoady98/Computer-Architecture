@@ -1,18 +1,17 @@
--- Ciaran Coady --
+---------------------------------------------------------------------------------- 
+-- Engineer: Ciaran Coady
+-- Module Name: Functional_Unit_tb
+-- Project Name: Computer Architecture
+----------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
- 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
- 
+
 ENTITY Functional_Unit_tb IS
 END Functional_Unit_tb;
  
 ARCHITECTURE behavior OF Functional_Unit_tb is
  
     -- Component Declaration for the Unit Under Test (UUT)
-    
     component Functional_Unit
     Port ( A : in STD_LOGIC_VECTOR (15 downto 0);
            B : in STD_LOGIC_VECTOR (15 downto 0);
@@ -22,7 +21,7 @@ ARCHITECTURE behavior OF Functional_Unit_tb is
            N : out STD_LOGIC;
            Z : out STD_LOGIC;
            F : out STD_LOGIC_VECTOR (15 downto 0));
-end component;
+    end component;
     
 
    --Inputs

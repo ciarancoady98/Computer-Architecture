@@ -1,5 +1,8 @@
--- Ciaran Coady --
-
+---------------------------------------------------------------------------------- 
+-- Engineer: Ciaran Coady
+-- Module Name: Control_Address_Register
+-- Project Name: Computer Architecture
+----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
@@ -26,7 +29,7 @@ architecture Behavioral of Conrol_Address_Register is
 	END COMPONENT;
 
 	-- 16 bit Register
-	COMPONENT reg16
+	COMPONENT Reg_16bit
 	PORT(
 		D : IN std_logic_vector(15 downto 0);
 		load : IN std_logic;
@@ -53,7 +56,7 @@ begin
 	);
 
 	-- register
-		reg: reg16 PORT MAP(
+		reg: Reg_16bit PORT MAP(
 			D => into_reg,
 			load => '1',
 			Clk => Clk,

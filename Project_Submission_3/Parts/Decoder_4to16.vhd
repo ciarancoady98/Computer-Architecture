@@ -1,17 +1,10 @@
--- Ciaran Coady --
-
-
+---------------------------------------------------------------------------------- 
+-- Engineer: Ciaran Coady
+-- Module Name: Decoder_4to16
+-- Project Name: Computer Architecture
+----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
 
 entity Decoder_4to16 is
     Port ( A0 : in  STD_LOGIC;
@@ -25,14 +18,14 @@ entity Decoder_4to16 is
            Q4 : out STD_LOGIC;
            Q5 : out STD_LOGIC;
            Q6 : out STD_LOGIC;
-           Q7 : out STD_LOGIC);
-           Q8 : out STD_LOGIC);
-           Q9 : out STD_LOGIC);
-           Q10 : out STD_LOGIC);
-           Q11 : out STD_LOGIC);
-           Q12 : out STD_LOGIC);
-           Q13 : out STD_LOGIC);
-           Q14 : out STD_LOGIC);
+           Q7 : out STD_LOGIC;
+           Q8 : out STD_LOGIC;
+           Q9 : out STD_LOGIC;
+           Q10 : out STD_LOGIC;
+           Q11 : out STD_LOGIC;
+           Q12 : out STD_LOGIC;
+           Q13 : out STD_LOGIC;
+           Q14 : out STD_LOGIC;
            Q15 : out STD_LOGIC);
 end Decoder_4to16;
 

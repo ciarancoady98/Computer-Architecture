@@ -1,18 +1,12 @@
--- Ciaran Coady --
-
-
+---------------------------------------------------------------------------------- 
+-- Engineer: Ciaran Coady
+-- Module Name: RegisterFile
+-- Project Name: Computer Architecture
+----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
 
 entity RegisterFile is
     Port ( A_Address : in STD_LOGIC_VECTOR (3 downto 0);
@@ -107,13 +101,6 @@ architecture Behavioral of RegisterFile is
     signal load_reg6 : std_logic;
     signal load_reg7 : std_logic;
     signal load_reg8 : std_logic;
-    signal load_reg9 : std_logic;
-    signal load_reg10 : std_logic;
-    signal load_reg11 : std_logic;
-    signal load_reg12 : std_logic;
-    signal load_reg13 : std_logic;
-    signal load_reg14 : std_logic;
-    signal load_reg15 : std_logic;
 
     signal load_reg0_enable : std_logic;
     signal load_reg1_enable : std_logic;
@@ -134,13 +121,6 @@ architecture Behavioral of RegisterFile is
     signal reg6_q : std_logic_vector(15 downto 0);
     signal reg7_q : std_logic_vector(15 downto 0);
     signal reg8_q : std_logic_vector(15 downto 0);
-    signal reg9_q : std_logic_vector(15 downto 0);
-    signal reg10_q : std_logic_vector(15 downto 0);
-    signal reg11_q : std_logic_vector(15 downto 0);
-    signal reg12_q : std_logic_vector(15 downto 0);
-    signal reg13_q : std_logic_vector(15 downto 0);
-    signal reg14_q : std_logic_vector(15 downto 0);
-    signal reg15_q : std_logic_vector(15 downto 0);
 
     signal D_Data_signal : std_logic_vector(15 downto 0);
 
@@ -226,11 +206,12 @@ begin
 
 
     --Destination register decoder
-    des_decoder_4to16: Decoder_3to8
+    des_decoder_4to16: Decoder_4to16
     PORT MAP(
             A0 => D_Address(0),
             A1 => D_Address(1),
             A2 => D_Address(2),
+            A3 => D_Address(3),
             Q0 => load_reg0,
             Q1 => load_reg1,
             Q2 => load_reg2,
@@ -240,18 +221,18 @@ begin
             Q6 => load_reg6,
             Q7 => load_reg7,
             Q8 => load_reg8,
-          	Q9 => load_reg9,
-          	Q10 => load_reg10,
-          	Q11 => load_reg11,
-          	Q12 => load_reg12,
-          	Q13 => load_reg13,
-          	Q14 => load_reg14,
-            Q15 => load_reg15
+          	Q9 => load_reg8,
+          	Q10 => load_reg8,
+          	Q11 => load_reg8,
+          	Q12 => load_reg8,
+          	Q13 => load_reg8,
+          	Q14 => load_reg8,
+            Q15 => load_reg8
             );
 
 
      --16 to 1 source register multiplexer
-     A_inst_mux16_16bit: Multiplexer_8to1
+     A_inst_mux16_16bit: Multiplexer_16to1
      PORT MAP(
             In0 => reg0_q,
             In1 => reg1_q,
@@ -262,13 +243,13 @@ begin
             In6 => reg6_q,
             In7 => reg7_q,
             In8 => reg8_q,
-            In9 => reg9_q,
-            In10 => reg10_q,
-            In11 => reg11_q,
-            In12 => reg12_q,
-            In13 => reg13_q,
-            In14 => reg14_q,
-            In15 => reg15_q,
+            In9 => reg8_q,
+            In10 => reg8_q,
+            In11 => reg8_q,
+            In12 => reg8_q,
+            In13 => reg8_q,
+            In14 => reg8_q,
+            In15 => reg8_q,
             S0 => A_Address(0),
             S1 => A_Address(1),
             S2 => A_Address(2),
@@ -277,29 +258,29 @@ begin
             );
 
      --16 to 1 source register multiplexer
-     B_inst_mux16_16bit: Multiplexer_8to1
+     B_inst_mux16_16bit: Multiplexer_16to1
      PORT MAP(
            In0 => reg0_q,
-           In1 => reg1_q,
-           In2 => reg2_q,
-           In3 => reg3_q,
-           In4 => reg4_q,
-           In5 => reg5_q,
-           In6 => reg6_q,
-           In7 => reg7_q,
-           In8 => reg8_q,
-           In9 => reg9_q,
-           In10 => reg10_q,
-           In11 => reg11_q,
-           In12 => reg12_q,
-           In13 => reg13_q,
-           In14 => reg14_q,
-           In15 => reg15_q,
-           S0 => B_Address(0),
-           S1 => B_Address(1),
-           S2 => B_Address(2),
-           S3 => B_Address(3),
-           Z =>A_Data_Signal
+            In1 => reg1_q,
+            In2 => reg2_q,
+            In3 => reg3_q,
+            In4 => reg4_q,
+            In5 => reg5_q,
+            In6 => reg6_q,
+            In7 => reg7_q,
+            In8 => reg8_q,
+            In9 => reg8_q,
+            In10 => reg8_q,
+            In11 => reg8_q,
+            In12 => reg8_q,
+            In13 => reg8_q,
+            In14 => reg8_q,
+            In15 => reg8_q,
+            S0 => B_Address(0),
+            S1 => B_Address(1),
+            S2 => B_Address(2),
+            S3 => B_Address(3),
+            Z =>A_Data_Signal
             );
 
 
@@ -316,13 +297,5 @@ begin
      load_reg6_enable <= load_reg6 AND RW;
      load_reg7_enable <= load_reg7 AND RW;
      load_reg8_enable <= load_reg8 AND RW;
-     load_reg9_enable <= load_reg8 AND RW;
-     load_reg10_enable <= load_reg8 AND RW;
-     load_reg11_enable <= load_reg8 AND RW;
-     load_reg12_enable <= load_reg8 AND RW;
-     load_reg13_enable <= load_reg8 AND RW;
-     load_reg14_enable <= load_reg8 AND RW;
-     load_reg15_enable <= load_reg8 AND RW;
-
 
 end Behavioral;

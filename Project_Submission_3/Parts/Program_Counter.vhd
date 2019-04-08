@@ -1,5 +1,8 @@
--- Ciaran Coady --
-
+---------------------------------------------------------------------------------- 
+-- Engineer: Ciaran Coady
+-- Module Name: Program_Counter
+-- Project Name: Computer Architecture
+----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
@@ -58,7 +61,7 @@ adderIncrement: ripple_adder_16bit PORT MAP(
 );
 
 -- register
-reg: reg16 PORT MAP(
+reg: Reg_16bit PORT MAP(
 	D => next_PC,
 	load => pi_or_pl_or_reset,
 	Clk => Clk,

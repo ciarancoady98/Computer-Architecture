@@ -1,18 +1,17 @@
--- Ciaran Coady --
+---------------------------------------------------------------------------------- 
+-- Engineer: Ciaran Coady
+-- Module Name: Decoder_3to8_tb
+-- Project Name: Computer Architecture
+----------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
- 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
- 
+
 ENTITY Decoder_3to8_tb IS
 END Decoder_3to8_tb;
  
 ARCHITECTURE behavior OF Decoder_3to8_tb is
  
     -- Component Declaration for the Unit Under Test (UUT)
-    
     COMPONENT Decoder_3to8
     PORT ( A0 : in STD_LOGIC;
            A1 : in STD_LOGIC;
@@ -42,10 +41,9 @@ ARCHITECTURE behavior OF Decoder_3to8_tb is
    signal Q5_signal : std_logic;
    signal Q6_signal : std_logic;
    signal Q7_signal : std_logic;
-   -- No clocks detected in port list. Replace <clock> below with 
-   -- appropriate port name 
- 
---   constant Clk_period : time := 10 ns;
+
+   --Clock 
+   constant Clk_period : time := 10 ns;
  
 BEGIN
  
@@ -67,42 +65,42 @@ BEGIN
    stim_proc: process
    begin	
         
-        wait for 10 ns;	
+        wait for Clk_period;
       A2_signal <= '0';
       A1_signal <= '0';
       A0_signal <= '0';
 
-      wait for 10 ns;	
+      wait for Clk_period;
       A2_signal <= '1';
       A1_signal <= '0';
       A0_signal <= '0';
       
-      wait for 10 ns;	
+      wait for Clk_period;
       A2_signal <= '0';
       A1_signal <= '1';
       A0_signal <= '0';
       
-      wait for 10 ns;	
+      wait for Clk_period;
       A2_signal <= '1';
       A1_signal <= '1';
       A0_signal <= '0';
       
-      wait for 10 ns;	
+      wait for Clk_period;
       A2_signal <= '0';
       A1_signal <= '0';
       A0_signal <= '1';
       
-      wait for 10 ns;	
+      wait for Clk_period;
       A2_signal <= '1';
       A1_signal <= '0';
       A0_signal <= '1';
       
-      wait for 10 ns;	
+      wait for Clk_period;
       A2_signal <= '0';
       A1_signal <= '1';
       A0_signal <= '1';
       
-      wait for 10 ns;	
+      wait for Clk_period;
       A2_signal <= '1';
       A1_signal <= '1';
       A0_signal <= '1';

@@ -1,25 +1,24 @@
--- Ciaran Coady --
+---------------------------------------------------------------------------------- 
+-- Engineer: Ciaran Coady
+-- Module Name: Logic_Circuit_tb
+-- Project Name: Computer Architecture
+----------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
- 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
- 
+
 ENTITY Logic_Circuit_tb IS
 END Logic_Circuit_tb;
  
 ARCHITECTURE behavior OF Logic_Circuit_tb is
  
     -- Component Declaration for the Unit Under Test (UUT)
-    
     component Logic_Circuit
     Port ( S0 : in STD_LOGIC;
            S1 : in STD_LOGIC;
            A : in STD_LOGIC_VECTOR (15 downto 0);
            B : in STD_LOGIC_VECTOR (15 downto 0);
            G : out STD_LOGIC_VECTOR (15 downto 0));
-end component;
+    end component;
     
 
    --Inputs
@@ -28,12 +27,10 @@ end component;
    signal S0_signal : STD_LOGIC;
    signal S1_signal : STD_LOGIC;
 
- 	--Outpzuts
+ 	--Outputs
    signal G_signal : STD_LOGIC_VECTOR (15 downto 0);
    
-   -- No clocks detected in port list. Replace <clock> below with 
-   -- appropriate port name 
- 
+   --Clock
    constant Clk_period : time := 40 ns;
  
 BEGIN

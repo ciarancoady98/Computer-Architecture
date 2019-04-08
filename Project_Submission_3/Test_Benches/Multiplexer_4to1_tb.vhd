@@ -1,18 +1,17 @@
--- Ciaran Coady --
+---------------------------------------------------------------------------------- 
+-- Engineer: Ciaran Coady
+-- Module Name: Multiplexer_3to1_1bit
+-- Project Name: Computer Architecture
+----------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
- 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
- 
+
 ENTITY Multiplexer_4to1_tb IS
 END Multiplexer_4to1_tb;
  
 ARCHITECTURE behavior OF Multiplexer_4to1_tb is
  
     -- Component Declaration for the Unit Under Test (UUT)
-    
     component Multiplexer_4to1
     Port ( S0 : in STD_LOGIC;
            S1 : in STD_LOGIC;
@@ -22,7 +21,7 @@ ARCHITECTURE behavior OF Multiplexer_4to1_tb is
            In3 : in STD_LOGIC;
            Z : out STD_LOGIC
            );
-end component;
+    end component;
     
 
    --Inputs
@@ -34,12 +33,10 @@ end component;
    signal In3_signal : STD_LOGIC;
    
 
- 	--Outpzuts
+ 	--Outputs
    signal Z_signal : STD_LOGIC;
-   
-   -- No clocks detected in port list. Replace <clock> below with 
-   -- appropriate port name 
- 
+  
+   --Clock
    constant Clk_period : time := 10 ns;
  
 BEGIN

@@ -1,25 +1,24 @@
--- Ciaran Coady --
+---------------------------------------------------------------------------------- 
+-- Engineer: Ciaran Coady
+-- Module Name: Shifter_16bit_tb
+-- Project Name: Computer Architecture
+----------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
- 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
- 
+
 ENTITY Shifter_16bit_tb IS
 END Shifter_16bit_tb;
  
 ARCHITECTURE behavior OF Shifter_16bit_tb is
  
     -- Component Declaration for the Unit Under Test (UUT)
-    
     component Shifter_16bit
     Port ( B : in STD_LOGIC_VECTOR (15 downto 0);
            S : in STD_LOGIC_VECTOR (1 downto 0);
            Ir : in STD_LOGIC;
            Il : in STD_LOGIC;
            H : out STD_LOGIC_VECTOR (15 downto 0));
-end component;
+    end component;
     
 
    --Inputs
@@ -28,12 +27,10 @@ end component;
    signal Ir_signal : STD_LOGIC;
    signal Il_signal : STD_LOGIC;
 
- 	--Outpzuts
+ 	--Outputs
    signal H_signal : STD_LOGIC_VECTOR (15 downto 0);
    
-   -- No clocks detected in port list. Replace <clock> below with 
-   -- appropriate port name 
- 
+   --Clock
    constant Clk_period : time := 100 ns;
  
 BEGIN

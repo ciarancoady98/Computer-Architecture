@@ -1,18 +1,17 @@
--- Ciaran Coady --
+---------------------------------------------------------------------------------- 
+-- Engineer: Ciaran Coady
+-- Module Name: Arithmetic_Circuit_Bitslice_tb
+-- Project Name: Computer Architecture
+----------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
- 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
- 
+
 ENTITY Arithmetic_Circuit_Bitslice_tb IS
 END Arithmetic_Circuit_Bitslice_tb;
  
 ARCHITECTURE behavior OF Arithmetic_Circuit_Bitslice_tb is
  
     -- Component Declaration for the Unit Under Test (UUT)
-    
     component Arithmetic_Circuit_Bitslice
     Port ( A : in STD_LOGIC;
            B : in STD_LOGIC;
@@ -21,7 +20,7 @@ ARCHITECTURE behavior OF Arithmetic_Circuit_Bitslice_tb is
            C_in : in STD_LOGIC;
            G : out STD_LOGIC;
            C_out : out STD_LOGIC);
-end component;
+    end component;
     
 
    --Inputs
@@ -31,13 +30,11 @@ end component;
    signal S0_signal : STD_LOGIC;
    signal S1_signal : STD_LOGIC;
 
- 	--Outpzuts
+ 	--Outputs
    signal G_signal : STD_LOGIC;
    signal C_out_signal : STD_LOGIC;
    
-   -- No clocks detected in port list. Replace <clock> below with 
-   -- appropriate port name 
- 
+  --Clock
   constant Clk_period : time := 20 ns;
  
 BEGIN

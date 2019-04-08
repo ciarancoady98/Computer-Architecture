@@ -1,18 +1,17 @@
--- Ciaran Coady --
+---------------------------------------------------------------------------------- 
+-- Engineer: Ciaran Coady
+-- Module Name: Reg_16bit
+-- Project Name: Computer Architecture
+----------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
- 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
- 
+
 ENTITY Reg_16bit_tb IS
 END Reg_16bit_tb;
  
 ARCHITECTURE behavior OF Reg_16bit_tb IS 
  
     -- Component Declaration for the Unit Under Test (UUT)
-    
     COMPONENT Reg_16bit
     Port ( D : in STD_LOGIC_VECTOR (15 downto 0);
            Q : out STD_LOGIC_VECTOR (15 downto 0);
@@ -27,10 +26,9 @@ ARCHITECTURE behavior OF Reg_16bit_tb IS
    signal Clk_signal : std_logic;
 
  	--Outputs
-   signal Q_signal : std_logic_vector(15 downto 0);
-   -- No clocks detected in port list. Replace <clock> below with 
-   -- appropriate port name 
+   signal Q_signal : std_logic_vector(15 downto 0); 
  
+   --Clocks
    constant Clk_period : time := 10 ns;
  
 BEGIN
