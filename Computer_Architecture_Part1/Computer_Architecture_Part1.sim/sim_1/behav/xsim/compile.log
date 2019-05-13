@@ -1,4 +1,0 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/ciaran/Computer_Architecture/Computer_Architecture_Part1/Computer_Architecture_Part1.srcs/sources_1/imports/Downloads/multiplexer.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'multiplexer'
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/ciaran/Computer_Architecture/Computer_Architecture_Part1/Computer_Architecture_Part1.srcs/sim_1/imports/Downloads/multiplexer_tb.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'multiplexer_tb'

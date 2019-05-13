@@ -1,6 +1,0 @@
-# compile vhdl design source files
-vhdl xil_defaultlib  \
-"../../../../Computer_Architecture_Part1.srcs/sim_1/new/Multiplexer_2to1_tb.vhd" \
-
-# Do not sort compile order
-nosort
