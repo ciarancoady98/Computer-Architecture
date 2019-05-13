@@ -6,31 +6,33 @@ USE ieee.std_logic_1164.ALL;
 -- arithmetic functions with Signed or Unsigned values
 --USE ieee.numeric_std.ALL;
  
-ENTITY Arithmetic_Circuit_tb IS
-END Arithmetic_Circuit_tb;
+ENTITY Arithmetic_Logic_Unit_tb IS
+END Arithmetic_Logic_Unit_tb;
  
-ARCHITECTURE behavior OF Arithmetic_Circuit_tb is
+ARCHITECTURE behavior OF Arithmetic_Logic_Unit_tb is
  
     -- Component Declaration for the Unit Under Test (UUT)
     
-    component Arithmetic_Circuit
-    Port ( C_In : in STD_LOGIC;
-           S1 : in STD_LOGIC;
-           S0 : in STD_LOGIC;
+    component Arithmetic_Logic_Unit
+    Port ( C_in : in STD_LOGIC;
            A : in STD_LOGIC_VECTOR (15 downto 0);
            B : in STD_LOGIC_VECTOR (15 downto 0);
+           S0 : in STD_LOGIC;
+           S1 : in STD_LOGIC;
+           S2 : in STD_LOGIC;
            G : out STD_LOGIC_VECTOR (15 downto 0);
-           C_Out : out STD_LOGIC;
+           C_out : out STD_LOGIC;
            V_out : out STD_LOGIC);
 end component;
     
 
    --Inputs
-   signal A_signal : STD_LOGIC_VECTOR (15 downto 0);
-   signal B_signal : STD_LOGIC_VECTOR (15 downto 0);
-   signal C_in_signal : STD_LOGIC;
-   signal S0_signal : STD_LOGIC;
-   signal S1_signal : STD_LOGIC;
+   signal A_signal : STD_LOGIC_VECTOR (15 downto 0) := (others => '0');
+   signal B_signal : STD_LOGIC_VECTOR (15 downto 0) := (others => '0');
+   signal C_in_signal : STD_LOGIC := '0';
+   signal S0_signal : STD_LOGIC := '0';
+   signal S1_signal : STD_LOGIC := '0';
+   signal S2_signal : STD_LOGIC := '0';
 
  	--Outpzuts
    signal G_signal : STD_LOGIC_VECTOR (15 downto 0);
@@ -40,16 +42,17 @@ end component;
    -- No clocks detected in port list. Replace <clock> below with 
    -- appropriate port name 
  
-   constant Clk_period : time := 80 ns;
+    constant Clk_period : time := 80 ns;
  
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: Arithmetic_Circuit PORT MAP (
+   uut: Arithmetic_Logic_Unit PORT MAP (
           A => A_signal,
           B => B_signal,
           S0 => S0_signal,
           S1 => S1_signal,
+          S2 => S2_signal,
           C_in => C_in_signal,
           G => G_signal,
           C_out => C_out_signal,
@@ -58,34 +61,22 @@ BEGIN
 
    stim_proc: process
    begin	
-        
-      wait for Clk_period;
-      A_signal <= "0000000000000000";
-      B_signal <= "1111111111111111";
       
-      C_in_signal <= '0';
-      
-      wait for Clk_period;
-      
-      --set B to all 0's
       S0_signal <= '0';
       S1_signal <= '0';
       
       wait for Clk_period;
       
-      --B
       S0_signal <= '1';
       S1_signal <= '0';
       
       wait for Clk_period;
       
-      --not B
       S0_signal <= '0';
       S1_signal <= '1';
       
       wait for Clk_period;
       
-      --set B to all 1's
       S0_signal <= '1';
       S1_signal <= '1';
       
@@ -93,32 +84,12 @@ BEGIN
       
       
       --Change carry
-      C_in_signal <= '1';
+      C_in_signal <= not C_in_signal;
+      S2_signal <= not S2_signal;
       
       wait for Clk_period;
-      
-      --set B to all 0's
-      S0_signal <= '0';
-      S1_signal <= '0';
-      
-      wait for Clk_period;
-      
-      --B
-      S0_signal <= '1';
-      S1_signal <= '0';
-      
-      wait for Clk_period;
-      
-      --Not B
-      S0_signal <= '0';
-      S1_signal <= '1';
-      
-      wait for Clk_period;
-      
-      --Set B to all 1's
-      S0_signal <= '1';
-      S1_signal <= '1';
-
+     
+ --     wait;
    end process;
 
 END;

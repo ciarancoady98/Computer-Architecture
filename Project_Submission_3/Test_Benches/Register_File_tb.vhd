@@ -29,7 +29,6 @@ ARCHITECTURE behavior OF RegisterFile_tb is
    
    signal rw_enable_signal : STD_LOGIC;
    signal Clk_signal : STD_LOGIC;
-   signal Data_signal : STD_LOGIC_VECTOR(15 downto 0);
    signal A_select_Signal : STD_LOGIC_VECTOR(3 downto 0);
    signal B_select_Signal : STD_LOGIC_VECTOR(3 downto 0);
    signal D_select_Signal : STD_LOGIC_VECTOR(3 downto 0);
@@ -55,70 +54,80 @@ BEGIN
            A_Data => A_data_signal,
            B_Data => B_data_signal
         );
+        
+   -- Process to change the clock signal
+   Clk_process :process
+   begin
+	   Clk_signal <= '0';
+	   wait for 10 ns;
+	   Clk_signal <= '1';
+	   wait for 10 ns;
+   end process;
 
 -- begin process
 stim_proc : process
 begin
-Clk_signal <= '0';
+
+wait for Clk_period;
 
 rw_enable_signal <= '1';
-D_data_Signal <= "1111111111111110";
+D_data_Signal <= "0000000000000000";
 D_select_signal <= "0000";
+wait for Clk_period;
+--rw_enable_signal <= '0';
 A_select_signal <= "0000";
---A should display fffe and fffe is in reg0
+--A should display 0000 and 0000 is in reg0
 
-wait for clk_period*3;
-clk_signal <= '1';
+wait for Clk_period;
 
-wait for clk_period;
-clk_signal <= '0';
-
-D_data_Signal <= "1111111111111110";
+D_data_Signal <= "0000000000000001";
 D_select_signal <= "0001";
-B_select_signal <= "0001";
---B should display fffe and fffe is in reg1
+wait for Clk_period;
+--rw_enable_signal <= '0';
+A_select_signal <= "0001";
+--B should display 0001 and 0001 is in reg1
 
-wait for clk_period;
-clk_signal <= '1';
+wait for Clk_period;
 
-wait for clk_period;
-clk_signal <= '0';
-
-data_signal <= A_data_signal;
+D_data_Signal <= "0000000000000010";
 D_select_signal <= "0010";
-B_select_signal <= "0010";
---B select should display fffe and fffe is in reg2
+wait for Clk_period;
+--rw_enable_signal <= '0';
+A_select_signal <= "0010";
+--B select should display 0010 and 0010 is in reg2
 
 wait for clk_period;
-clk_signal <= '1';
-
-wait for clk_period;
-clk_signal <= '0';
 
 rw_enable_signal <= '0';
 D_data_Signal <= "1111111111111110";
 D_select_signal <= "0010";
+wait for Clk_period;
 B_select_signal <= "0010";
 --nothing should happen as load enable is not set
 
 
-wait for clk_period;
-clk_signal <= '1';
-
-wait for clk_period;
-clk_signal <= '0';
+wait for Clk_period;
 
 rw_enable_signal <= '1';
-D_data_Signal <= "0000000000000000";
+D_data_Signal <= "0000000000000111";
 D_select_signal <= "0111";
+wait for Clk_period;
+--rw_enable_signal <= '0';
 A_select_signal <= "0111";
---A select should display 0000 and 0000 is in reg7
+--A select should display 0111 and 0111 is in reg7
 
+wait for Clk_period;
 
-wait for clk_period;
-clk_signal <= '1';
+rw_enable_signal <= '1';
+D_data_Signal <= "0000000000001000";
+D_select_signal <= "1000";
+wait for Clk_period;
+--rw_enable_signal <= '0';
+A_select_signal <= "1000";
+B_select_signal <= "1000";
+--A select should display 1000 and 1000 is in reg8
 
-wait for clk_period;
+wait for Clk_period;
 
 end process;
 

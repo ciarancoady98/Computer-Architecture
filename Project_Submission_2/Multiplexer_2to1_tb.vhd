@@ -30,7 +30,7 @@ ARCHITECTURE behavior OF Multiplexer_2to1_tb IS
    -- No clocks detected in port list. Replace <clock> below with 
    -- appropriate port name 
  
---   constant Clk_period : time := 10 ns;
+   constant Clk_period : time := 40 ns;
  
 BEGIN
  
@@ -44,16 +44,19 @@ BEGIN
 
    stim_proc: process
    begin		
+      --load input signals
       In0_signal <= "0000000000000000";
-		In1_signal <= "1111111111111111";
+	  In1_signal <= "1111111111111111";
 		
-      wait for 10 ns;	
+      wait for Clk_period;	
+      --Select line 0 for output
       S_signal <= '0';
 
-      wait for 10 ns;	
+      wait for Clk_period;	
+      
+      --Select line 1 for output
 	  S_signal <= '1';
      
- --     wait;
    end process;
 
 END;

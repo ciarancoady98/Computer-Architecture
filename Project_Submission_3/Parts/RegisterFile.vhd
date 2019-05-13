@@ -1,4 +1,4 @@
----------------------------------------------------------------------------------- 
+----------------------------------------------------------------------------------
 -- Engineer: Ciaran Coady
 -- Module Name: RegisterFile
 -- Project Name: Computer Architecture
@@ -30,57 +30,37 @@ architecture Behavioral of RegisterFile is
            Clk : in STD_LOGIC);
     END COMPONENT;
 
-    -- 4to16 Decoder --
-    COMPONENT decoder_4to16
-	PORT(
-		A0 : IN std_logic;
-		A1 : IN std_logic;
-		A2 : IN std_logic;
-		A3 : IN std_logic;
-		Q0 : OUT std_logic;
-		Q1 : OUT std_logic;
-		Q2 : OUT std_logic;
-		Q3 : OUT std_logic;
-		Q4 : OUT std_logic;
-		Q5 : OUT std_logic;
-		Q6 : OUT std_logic;
-		Q7 : OUT std_logic;
-		Q8 : OUT std_logic;
-		Q9 : OUT std_logic;
-		Q10 : OUT std_logic;
-		Q11 : OUT std_logic;
-		Q12 : OUT std_logic;
-		Q13 : OUT std_logic;
-		Q14 : OUT std_logic;
-		Q15 : OUT std_logic
-		);
+    -- 3to8 Decoder --
+    COMPONENT Decoder_3to8 is
+    PORT ( A0 : in STD_LOGIC;
+           A1 : in STD_LOGIC;
+           A2 : in STD_LOGIC;
+           Q0 : out STD_LOGIC;
+           Q1 : out STD_LOGIC;
+           Q2 : out STD_LOGIC;
+           Q3 : out STD_LOGIC;
+           Q4 : out STD_LOGIC;
+           Q5 : out STD_LOGIC;
+           Q6 : out STD_LOGIC;
+           Q7 : out STD_LOGIC);
     END COMPONENT;
 
 
-    -- 16to1 multiplexer --
-    COMPONENT Multiplexer_16to1
-        Port ( S0 : in  STD_LOGIC;
-               S1 : in  STD_LOGIC;
-               S2 : in  STD_LOGIC;
-               S3 : in  STD_LOGIC;
-               In0 : in  STD_LOGIC_VECTOR (15 downto 0);
-               In1 : in  STD_LOGIC_VECTOR (15 downto 0);
-               In2 : in  STD_LOGIC_VECTOR (15 downto 0);
-               In3 : in  STD_LOGIC_VECTOR (15 downto 0);
-               In4 : in  STD_LOGIC_VECTOR (15 downto 0);
-               In5 : in  STD_LOGIC_VECTOR (15 downto 0);
-               In6 : in  STD_LOGIC_VECTOR (15 downto 0);
-               In7 : in  STD_LOGIC_VECTOR (15 downto 0);
-               In8 : in  STD_LOGIC_VECTOR (15 downto 0);
-               In9 : in  STD_LOGIC_VECTOR (15 downto 0);
-               In10 : in  STD_LOGIC_VECTOR (15 downto 0);
-               In11 : in  STD_LOGIC_VECTOR (15 downto 0);
-               In12 : in  STD_LOGIC_VECTOR (15 downto 0);
-               In13 : in  STD_LOGIC_VECTOR (15 downto 0);
-               In14 : in  STD_LOGIC_VECTOR (15 downto 0);
-               In15 : in  STD_LOGIC_VECTOR (15 downto 0);
-               Z : out STD_LOGIC_VECTOR (15 downto 0));
-    end COMPONENT;
+    -- 8to1 multiplexer --
+    COMPONENT Multiplexer_8to1 is
+    PORT ( S0 : in STD_LOGIC;
+           S1 : in STD_LOGIC;
+           S2 : in STD_LOGIC;
+           In0 : in STD_LOGIC_VECTOR (15 downto 0);
+           In1 : in STD_LOGIC_VECTOR (15 downto 0);
+           In2 : in STD_LOGIC_VECTOR (15 downto 0);
+           In3 : in STD_LOGIC_VECTOR (15 downto 0);
+           In4 : in STD_LOGIC_VECTOR (15 downto 0);
+           In5 : in STD_LOGIC_VECTOR (15 downto 0);
+           In6 : in STD_LOGIC_VECTOR (15 downto 0);
+           In7 : in STD_LOGIC_VECTOR (15 downto 0);
+           Z : out STD_LOGIC_VECTOR (15 downto 0));
+    END COMPONENT;
 
 
     -- 2to1 Multiplexer --
@@ -121,6 +101,9 @@ architecture Behavioral of RegisterFile is
     signal reg6_q : std_logic_vector(15 downto 0);
     signal reg7_q : std_logic_vector(15 downto 0);
     signal reg8_q : std_logic_vector(15 downto 0);
+
+    signal AMux_Data_signal : std_logic_vector(15 downto 0);
+    signal BMux_Data_signal : std_logic_vector(15 downto 0);
 
     signal D_Data_signal : std_logic_vector(15 downto 0);
 
@@ -196,7 +179,7 @@ begin
             Clk=>Clk,
             Q => reg7_q );
 
-    --instruction register
+    --extra register
     reg8: Reg_16bit
     PORT MAP(
             D => D_Data_signal,
@@ -206,12 +189,11 @@ begin
 
 
     --Destination register decoder
-    des_decoder_4to16: Decoder_4to16
+    des_decoder_3to8: Decoder_3to8
     PORT MAP(
-            A0 => D_Address(0),
+            A0 => D_Address(2),
             A1 => D_Address(1),
-            A2 => D_Address(2),
-            A3 => D_Address(3),
+            A2 => D_Address(0),
             Q0 => load_reg0,
             Q1 => load_reg1,
             Q2 => load_reg2,
@@ -219,20 +201,12 @@ begin
             Q4 => load_reg4,
             Q5 => load_reg5,
             Q6 => load_reg6,
-            Q7 => load_reg7,
-            Q8 => load_reg8,
-          	Q9 => load_reg8,
-          	Q10 => load_reg8,
-          	Q11 => load_reg8,
-          	Q12 => load_reg8,
-          	Q13 => load_reg8,
-          	Q14 => load_reg8,
-            Q15 => load_reg8
+            Q7 => load_reg7
             );
 
 
-     --16 to 1 source register multiplexer
-     A_inst_mux16_16bit: Multiplexer_16to1
+     --8 to 1 source register multiplexer
+     A_inst_mux8_16bit: Multiplexer_8to1
      PORT MAP(
             In0 => reg0_q,
             In1 => reg1_q,
@@ -242,25 +216,16 @@ begin
             In5 => reg5_q,
             In6 => reg6_q,
             In7 => reg7_q,
-            In8 => reg8_q,
-            In9 => reg8_q,
-            In10 => reg8_q,
-            In11 => reg8_q,
-            In12 => reg8_q,
-            In13 => reg8_q,
-            In14 => reg8_q,
-            In15 => reg8_q,
             S0 => A_Address(0),
-            S1 => A_Address(1),
-            S2 => A_Address(2),
-            S3 => A_Address(3),
-            Z =>A_Data_Signal
+            S1 => A_Address(0),
+            S2 => A_Address(0),
+            Z =>AMux_Data_Signal
             );
 
-     --16 to 1 source register multiplexer
-     B_inst_mux16_16bit: Multiplexer_16to1
+     --8 to 1 source register multiplexer
+     B_inst_mux8_16bit: Multiplexer_8to1
      PORT MAP(
-           In0 => reg0_q,
+            In0 => reg0_q,
             In1 => reg1_q,
             In2 => reg2_q,
             In3 => reg3_q,
@@ -268,21 +233,27 @@ begin
             In5 => reg5_q,
             In6 => reg6_q,
             In7 => reg7_q,
-            In8 => reg8_q,
-            In9 => reg8_q,
-            In10 => reg8_q,
-            In11 => reg8_q,
-            In12 => reg8_q,
-            In13 => reg8_q,
-            In14 => reg8_q,
-            In15 => reg8_q,
             S0 => B_Address(0),
-            S1 => B_Address(1),
-            S2 => B_Address(2),
-            S3 => B_Address(3),
-            Z =>A_Data_Signal
+            S1 => B_Address(0),
+            S2 => B_Address(0),
+            Z =>BMux_Data_Signal
             );
 
+     A_reg8_mux: Multiplexer_2to1
+     PORT MAP(
+            S => A_Address(3),
+            In0 => AMux_Data_Signal,
+            In1 => reg8_q,
+            Z => A_Data_Signal
+     );
+
+     B_reg8_mux: Multiplexer_2to1
+     PORT MAP(
+            S => B_Address(3),
+            In0 => BMux_Data_Signal,
+            In1 => reg8_q,
+            Z => B_Data_Signal
+     );
 
      D_Data_Signal <= D_Data;
      A_Data <= A_Data_Signal;
@@ -296,6 +267,6 @@ begin
      load_reg5_enable <= load_reg5 AND RW;
      load_reg6_enable <= load_reg6 AND RW;
      load_reg7_enable <= load_reg7 AND RW;
-     load_reg8_enable <= load_reg8 AND RW;
+     load_reg8_enable <= D_address(3) AND RW;
 
 end Behavioral;

@@ -8,12 +8,12 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity Program_Counter is
     Port (
-           Extend : in  STD_LOGIC_VECTOR (15 downto 0);
-			     Reset : in STD_LOGIC;
+           Input : in  STD_LOGIC_VECTOR (15 downto 0);
+		   Reset : in STD_LOGIC;
            PL : in  STD_LOGIC;
            PI : in  STD_LOGIC;
            Clk : in STD_LOGIC;
-           PC_out : out  STD_LOGIC_VECTOR (15 downto 0));
+           Output : out  STD_LOGIC_VECTOR (15 downto 0));
 end Program_Counter;
 
 architecture Behavioral of Program_Counter is
@@ -35,42 +35,41 @@ architecture Behavioral of Program_Counter is
              Clk : in STD_LOGIC);
   end COMPONENT;
 
-
-signal pi_or_pl_or_reset : std_logic;
 signal load_result : std_logic_vector(15 downto 0);
-signal increment_result : std_logic_vector(15 downto 0);
-signal next_PC : std_logic_vector (15 downto 0);
-signal last_PC : std_logic_vector (15 downto 0);
+signal incremented_signal : std_logic_vector(15 downto 0);
+signal next_value : std_logic_vector (15 downto 0);
+signal last_value : std_logic_vector (15 downto 0);
+signal load_signal : std_logic;
 
 begin
 
 -- ripple_adder_16bit
-adderLoad: ripple_adder_16bit PORT MAP(
-	A => last_pc,
-	B(15 downto 0) => Extend,
-	Cin => '0',
-	S => load_result
+load: ripple_adder_16bit PORT MAP(
+	X => last_value,
+	Y(15 downto 0) => Input,
+	C_in => '0',
+	Z => load_result
 );
 
 -- ripple_adder_16bit
-adderIncrement: ripple_adder_16bit PORT MAP(
-	A => last_PC,
-	B => x"0001",
-	Cin => '0',
-	S => increment_result
+increment: ripple_adder_16bit PORT MAP(
+	X => last_value,
+	Y => x"0001",
+	C_in => '0',
+	Z => incremented_signal
 );
 
 -- register
 reg: Reg_16bit PORT MAP(
-	D => next_PC,
-	load => pi_or_pl_or_reset,
+	D => next_value,
+	load => load_signal,
 	Clk => Clk,
-	Q => last_PC
+	Q => last_value
 );
 
-	next_PC <= x"0000" when reset='1' else increment_result when PI='1' else
-					load_result when PL='1' else x"0000";
-	PC_out <= last_PC;
-	pi_or_pl_or_reset <= (PI or PL or reset);
+--if reset is 1 output 0, if pi is 1 increment, if pl is 1 load, otherwise just output 0
+	next_value <= x"0000" when reset='1' else incremented_signal when PI='1' else load_result when PL='1' else x"0000";
+	Output <= last_value;
+	load_signal <= (PI or PL or reset);
 
 end Behavioral;

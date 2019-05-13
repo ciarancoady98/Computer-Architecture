@@ -28,7 +28,7 @@ ARCHITECTURE behavior OF Zero_Detect_16bit_tb is
    -- No clocks detected in port list. Replace <clock> below with 
    -- appropriate port name 
  
---   constant Clk_period : time := 10 ns;
+  constant Clk_period : time := 20 ns;
  
 BEGIN
  
@@ -41,17 +41,21 @@ BEGIN
    stim_proc: process
    begin	
         
-        wait for 10 ns;	
+        wait for Clk_period;
+        
+        --test ffff	
       A_signal <= "1111111111111111";
 
-      wait for 10 ns;	
-      A_signal <= "1101111111011110";
+      wait for Clk_period;	
       
-      wait for 10 ns;	
+      --test fffe
+      A_signal <= "1111111111111110";
+      
+      wait for Clk_period;	
+      
+      --test 0
       A_signal <= "0000000000000000";
  
-     
- --     wait;
    end process;
 
 END;

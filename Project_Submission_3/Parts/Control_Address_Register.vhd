@@ -6,26 +6,25 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
-entity Conrol_Address_Register is
-    Port ( data_in : in  STD_LOGIC_VECTOR (7 downto 0);
-			     reset : in STD_LOGIC;
-           Con : in  STD_LOGIC;
-			     Clk : in STD_LOGIC;
-           data_out : out  STD_LOGIC_VECTOR (7 downto 0));
-end Conrol_Address_Register;
+entity Control_Address_Register is
+    Port ( Data_in : in  STD_LOGIC_VECTOR (7 downto 0);
+           Control : in  STD_LOGIC;
+		   Clk : in STD_LOGIC;
+		   Reset : in STD_LOGIC;
+           Data_out : out  STD_LOGIC_VECTOR (7 downto 0));
+end Control_Address_Register;
 
 
-architecture Behavioral of Conrol_Address_Register is
+architecture Behavioral of Control_Address_Register is
 
-	COMPONENT ripple_adder_16bit
+    --Ripple Adder
+	COMPONENT Ripple_Adder_16bit
 	PORT(
-		A : IN std_logic_vector(15 downto 0);
-		B : IN std_logic_vector(15 downto 0);
-		Cin : IN std_logic;
-		S : OUT std_logic_vector(15 downto 0);
-		Cout : OUT std_logic;
-		Vout : OUT std_logic
-		);
+	   X : in STD_LOGIC_VECTOR (15 downto 0);
+       Y : in STD_LOGIC_VECTOR (15 downto 0);
+       C_in : in STD_LOGIC;
+       Z : out STD_LOGIC_VECTOR (15 downto 0);
+       C_out : out STD_LOGIC);
 	END COMPONENT;
 
 	-- 16 bit Register
@@ -38,34 +37,38 @@ architecture Behavioral of Conrol_Address_Register is
 		);
 	END COMPONENT;
 
-signal increment : std_logic_vector(7 downto 0);
-signal unused : std_logic_vector (7 downto 0);
-signal current_val : std_logic_vector (15 downto 0);
-signal into_reg : std_logic_vector (15 downto 0);
+signal incremented : std_logic_vector(7 downto 0);
+signal Current_Instruction : std_logic_vector (15 downto 0);
+signal toRegister : std_logic_vector (15 downto 0);
+signal leftover : std_logic_vector(7 downto 0);
 
 begin
 
 	-- ripple_adder_16bit
-	adder: ripple_adder_16bit PORT MAP(
-		A(7 downto 0) => current_val(7 downto 0),
-		A(15 downto 8) => x"00",
-		B => x"0001",
-		Cin => '0',
-		S(7 downto 0) => increment,
-		s(15 downto 8) => unused
+	rippleAdder: Ripple_Adder_16bit 
+	PORT MAP(
+		X(7 downto 0) => Current_Instruction(7 downto 0),
+		X(15 downto 8) => x"00",
+		Y => x"0001",
+		C_in => '0',
+		Z(7 downto 0) => incremented,
+		Z(15 downto 8) => leftover
 	);
 
-	-- register
-		reg: Reg_16bit PORT MAP(
-			D => into_reg,
-			load => '1',
-			Clk => Clk,
-			Q => current_val
+	-- 16 bit register
+	reg16: Reg_16bit PORT MAP(
+		D => toRegister,
+		load => '1',
+		Clk => Clk,
+		Q => Current_Instruction
 		);
 
---into_reg(7 downto 0) <= x"C0" when reset='1' else data_in when Con = '1' else increment;
-into_reg(7 downto 0) <= data_in when Con = '1' else increment;
-into_reg(15 downto 8) <= x"00";
-data_out <= current_val(7 downto 0);
-
+--load the first address when reset is pressed
+toRegister(7 downto 0) <= x"00" when reset='1' else Data_in when Control = '1' else incremented;
+--But the incremented instruction into the register if control is set to 1
+--toRegister(7 downto 0) <= Data_in when Control = '1' else incremented;
+--fill in extra bits
+toRegister(15 downto 8) <= x"00";
+--output the Current instruction
+Data_out <= Current_Instruction(7 downto 0);
 end Behavioral;

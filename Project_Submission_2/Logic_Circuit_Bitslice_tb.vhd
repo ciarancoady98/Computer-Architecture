@@ -34,7 +34,7 @@ end component;
    -- No clocks detected in port list. Replace <clock> below with 
    -- appropriate port name 
  
---   constant Clk_period : time := 10 ns;
+   constant Clk_period : time := 40 ns;
  
 BEGIN
  
@@ -50,32 +50,36 @@ BEGIN
    stim_proc: process
    begin	
         
-      wait for 20 ns;
+      wait for Clk_period;
+      
+      --intialise signals
       A_signal <= '0';
       B_signal <= '1';
       
+      --A and B
       S0_signal <= '0';
       S1_signal <= '0';
       
-      wait for 30 ns;
+      wait for Clk_period;
       
+      --A or B
       S0_signal <= '1';
       S1_signal <= '0';
       
-      wait for 30 ns;
+      wait for Clk_period;
       
+      --A XOR B
       S0_signal <= '0';
       S1_signal <= '1';
       
-      wait for 30 ns;
+      wait for Clk_period;
       
+      --not A
       S0_signal <= '1';
       S1_signal <= '1';
       
-      wait for 20 ns;
-      
-     
- --     wait;
+      wait for Clk_period;
+
    end process;
 
 END;
